@@ -333,7 +333,6 @@ function paintStaticTableHeads(){
 
 async function dexstats() {
 
-	paintStaticTableHeads()
 	TVLGURU_FANTOM = new ethers.Contract("0x0786c3a78f5133f08c1c70953b8b10376bc6dcad",["function p_t_coin_usd(address) public view returns(uint)"], CHAINS["fantom-mainnet"].pp);
 	_price_elite_fantom = (await TVLGURU_FANTOM.p_t_coin_usd("0xea035a13b64cb49d85e2f0a2736c9604cb21599c"))/1e18;
 	_price_elite = _price_elite_fantom / 300000;
@@ -341,6 +340,7 @@ async function dexstats() {
 	_supplies = (await Promise.all(ELITE.map(i=> i.totalSupply() ))).map( i=> Number(i)/1e18 )
 	_totsup = _supplies.reduce( (a,b) => a+b )
 
+	paintStaticTableHeads()
 	try{$("supplies-loader").remove()}catch(e){}
 	$("topstats-totsup").innerHTML = "≢"+fornum6( _totsup , 0)
 	$("topstats-fdv").innerHTML = "$"+fornum6(_price_elite * _totsup , 0)
