@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ELMA - Elite Lending Market Aggregator</title>
+	<meta name="description" content="Turbocharge your Lending Market Yields by separating your Prinicipal Tokens (PT) from its Lending Yield (virtual YT) and tapping into the Earnings Flywheel with Guru Network DAO!">
+	<meta name="keywords" content="Guru Network, Decentralized Finance, Fantom, ELITE, 1337, defi, farming, FTM1337">
+    <link rel="shortcut icon" href="https://ftm.guru/icons/eliteness.png">
+    <link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+
+    <div id="note" class="overlay">
+        <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <div class="content" id="content1">
+                Welcome!
+            </div>
+        </div>
+    </div>
+
+    <div class="topnav">
+        <div class="topnav-left">
+            <a href="https://eliteness.network/elma">
+                <img src="https://ftm.guru/icons/eliteness.png" alt="Logo" height="48px">
+            </a>
+            <a href="https://eliteness.network">ELITENESS<br>NETWORK</a>
+        </div>
+        <div class="topnav-right">
+            <p id="p_cw">
+                <span id="cw" onclick="cw()"><button id="cw_og" class="submit equal-gradient">Connect wallet</button></span>
+            </p>
+        </div>
+    </div>
+
+    <div id="main-area">
+        <div class="headline">
+        	<a href="https://eliteness.network/elma" style="text-decoration:none;">
+            	<div class="headline-keyword">ELITE ≢</div>
+				<div>The heart of our Network, our cross-chain Token!</div>
+				<br>
+				<div style="display:grid;grid-template-columns:auto auto; display:none">
+					<img src="back.svg" style="width: 32px;">
+					<div id="headline-props" style="text-align: right;font-family: bold;">ELMA Pool</div>
+				</div>
+            </a>
+        </div>
+        <!-- <div class="page-heading">
+            <img src="https://ftm.guru/icons/lock.svg" alt="Lock Icon">
+            <a href="https://eliteness.network/elma">eLOCKS</a>
+            ≻ <a>Overview</a>
+        </div> -->
+
+        <div class="topstats">
+            <div class="topstat">
+                <div id="topstats-totsup"><b>≢</b>400,000,000</div>
+                <div>Total Supply of ELITE</div>
+            </div>
+            <div class="topstat">
+                <div id="">10 Chains</div>
+                <div>Connected Networks</div>
+            </div>
+            <div class="topstat">
+                <div id="topstats-fdv">$-.--</div>
+                <div>Market Capitalization</div>
+            </div>
+        </div>
+
+		<br><br>
+
+        <!-- Tab Navigation -->
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Supplies')" id="tablinks_Supplies">Supplies</button>
+            <button class="tablinks" onclick="openTab(event, 'Portfolio')" id="tablinks_Portfolio">Portfolio</button>
+            <button class="tablinks" onclick="openTab(event, 'Bridge')" id="tablinks_Bridge">Bridge</button>
+        </div>
+
+
+        <!-- Tab content -->
+        <div id="Supplies" class="tabcontent">
+            <div class="c2a c2a90" align="center" style="margin:auto">
+                <h2>ELITE Supply Distribution</h2>
+                <br>
+        		<div class="c2a90-table" id="supplies-table" align="center" style="display:grid;">
+        			<div style="font-family:italic">Counting ≢ across 10 chains, please wait ...</div>
+        		</div>
+            </div>
+        </div>
+
+        <!-- Tab content -->
+        <div id="Portfolio" class="tabcontent">
+            <div class="c2a c2a90" align="center" style="margin:auto">
+				<h2>Your ELITE Portfolio</h2>
+                <br>
+        		<div class="c2a90-table" id="portfolio-table" align="center" style="display:grid;">
+        			<div style="font-family:italic">Counting your ≢ balances across 10 chains, please wait ...</div>
+        		</div>
+            </div>
+        </div>
+
+        <!-- Tab content -->
+        <div id="Bridge" class="tabcontent">
+            <div class="c2a c2a90" align="center" style="margin:auto">
+				<h2>Bridge ELITE Across Chains</h2>
+                <div id="bridge-curnet-bal"></div>
+                <br>
+        		<div class="c2a90-table" id="bridge-table" align="center" style="display:grid;">
+        			<div style="font-family:italic">Counting your ≢ balances across 10 chains, please wait ...</div>
+        		</div>
+            </div>
+        </div>
+
+        <footer>
+        	<h2>Powered by Guru Network</h2>
+        	<div class="social">
+            	<a target="_blank" href="https://discord.gg/QpyfMarNrV"><img src="https://ftm.guru/icons/discord.svg" alt="Discord"></a>
+            	<a target="_blank" href="https://twitter.com/FTM1337"><img src="https://ftm.guru/icons/twitter.svg" alt="Twitter"></a>
+            	<a target="_blank" href="https://dune.com/eliteness"><img src="https://ftm.guru/icons/dune.svg" alt="Dune"></a>
+            	<a target="_blank" href="https://defillama.com/protocol/guru-network-dao"><img src="https://ftm.guru/icons/defillama.svg" alt="Defillama"></a>
+            	<a target="_blank" href="https://coinmarketcap.com/currencies/elite-1337"><img src="https://ftm.guru/icons/cmc.svg" alt="CoinMarketCap"></a>
+            	<a target="_blank" href="https://ftm.guru/docs"><img src="https://ftm.guru/icons/docs.svg" alt="Docs"></a>
+        	</div>
+		</footer>
+
+    </div>
+
+    <!-- Ignore Below Block : Dev Logs -->
+    <div style="display:none">
+        <span id="cw_m"></span>
+        <div id="connect">
+            Please connect your web3 wallet.
+            <button onclick="cw()" id="btn-connect">Connect</button>
+        </div>
+        <div id="switch">
+            <b id="btn-switch" onclick="cw()">
+                <span id="cw"></span>
+            </b>
+            <div>Balance: <b id="usb-mtv">?</b> USDC</div>
+            <span>Wallet at Fantom Opera. <a href="index.html" style="color:aqua;">Change?</a></span>
+        </div>
+    </div>
+    <!-- Ignore Above Block : Dev Logs -->
+
+    <script src="https://ftm.guru/ethers-5.2.umd.min.js"></script>
+    <script src="index.js"></script>
+    <script>
+        RPC_URL = "https://rpcapi.fantom.network",
+        CHAINID = 250;
+        CHAIN_NAME = "Fantom Opera";
+        CHAIN_GAS = "FTM";
+        DECIMAL = 18;
+        EXPLORE = "https://ftmscan.com/";
+        EXPLORT = EXPLORE + "tx/";
+        EXPLORA = EXPLORE + "address/";
+        TVLGURU = "0x0786c3a78f5133f08c1c70953b8b10376bc6dcad";
+        NATIVE = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+        NATIVE_NAME = "FTM";
+        NATIVE_LOGO = "https://ftm.guru/icons/ftm.svg";
+
+
+        LOGOS = "https://cdn.jsdelivr.net/gh/unified-defi/equalizer-tokens@latest/fantom/tokens/128x128/";
+
+		BASE = "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83";
+		BASE_NAME = "WFTM";
+		BASE_LOGO = LOGOS + BASE.toLowerCase() + ".png";
+
+
+
+
+
+
+
+
+     CHAINS = {
+     	"sonic-mainnet": {
+            url: "https://rpc.soniclabs.com/",
+            chainId: 146,
+            chainLogo: "https://ftm.guru/icons/sonic.png",
+            gasName: "S",
+            explorer: "https://sonicscan.org",
+            lzid: 332,
+        },
+        "blast-mainnet": {
+            url: "https://rpc.ankr.com/blast",
+            chainId: 81457,
+            chainLogo: "https://ftm.guru/icons/blast.svg",
+            gasName: "ETH",
+            explorer: "https://routescan.io",
+            lzid: 243,
+        },
+        "bsc-mainnet": {
+            url: "https://rpc.ankr.com/bsc",
+            chainId: 56,
+            chainLogo: "https://ftm.guru/icons/bnb.svg",
+            gasName: "BNB",
+            explorer: "https://bscscan.com",
+            lzid: 102,
+        },
+		"fantom-mainnet":{
+			url: "https://rpcapi.fantom.network",//"https://rpc.ankr.com/fantom",
+            chainId: 250,
+            chainLogo: "https://ftm.guru/icons/ftm.svg",
+            gasName: "FTM",
+            explorer: "https://ftmscan.com",
+            lzid: 112,
+		},
+		"arbitrum-mainnet":{
+			url: "https://arbitrum.llamarpc.com",
+            chainId: 42161,
+            chainLogo: "https://ftm.guru/icons/arb1.svg",
+            gasName: "ETH",
+            explorer: "https://arbiscan.io",
+            lzid: 110,
+		},
+		"ethereum-mainnet":{
+			url: "https://eth.llamarpc.com",
+            chainId: 1,
+            chainLogo: "https://ftm.guru/icons/eth.svg",
+            gasName: "ETH",
+            explorer: "https://etherscan.io",
+            lzid: 101,
+		},
+		"avalanche-mainnet":{
+			url: "https://api.avax.network/ext/bc/C/rpc",
+			urls: ["https://1rpc.io/avax/c","https://api.avax.network/ext/bc/C/rpc"],
+            chainId: 43114,
+            chainLogo: "https://ftm.guru/icons/avax.svg",
+            gasName: "AVAX",
+            explorer: "https://routescan.io",
+            lzid: 106,
+		},
+		"base-mainnet":{
+			url: "https://developer-access-mainnet.base.org",
+            chainId: 8453,
+            chainLogo: "https://ftm.guru/icons/base.svg",
+            gasName: "ETH",
+            explorer: "https://basescan.org",
+            lzid: 184,
+		},
+		"polygon-mainnet":{
+			url: "https://polygon.llamarpc.com",
+            chainId: 137,
+            chainLogo: "https://ftm.guru/icons/matic.svg",
+            gasName: "POL",
+            explorer: "https://polygonscan.com",
+            lzid: 109,
+		},
+		"optimism-mainnet":{
+			url: "https://optimism.llamarpc.com",
+            chainId: 10,
+            chainLogo: "https://ftm.guru/icons/optimism.svg",
+            gasName: "ETH",
+            explorer: "https://optimistic.etherscan.io",
+            lzid: 111,
+		},
+	}
+
+	const CL = Object.keys(CHAINS)
+
+	const LZE_id = {
+		'fantom-testnet' : 10112,
+		'bsc-testnet' : 10102,
+
+		"arbitrum-mainnet": 110,
+		"bsc-mainnet": 102,
+		"base-mainnet": 184,
+		"blast-mainnet": 243,
+		"sonic-mainnet": 332,
+		"fantom-mainnet": 112,
+		"avalanche-mainnet": 106,
+  		"polygon-mainnet": 109,
+		"optimism-mainnet": 111,
+		"ethereum-mainnet": 101,
+	}
+
+
+
+	TOKENS = {
+		ELITE : "0x30C8Cf6B46AA4DF3F9fbC2857aca92F10a6cAd7f"
+	};
+	LOGOS = {
+		ELITE : "https://ftm.guru/icons/eliteness.png"
+	}
+
+    </script>
+</body>
+</html>
