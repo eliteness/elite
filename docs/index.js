@@ -119,7 +119,7 @@ async function cw() {
 }
 async function cw2() {
 	if(!(window.ethereum)){notice(`Metamask not detected!<br>Please Refresh the Page<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);return(0)}
-	if(!(isOnRighChain(window.ethereum.chainId))){notice(`[2] Wrong network detected!<br>Please switch to a supported chain:<br> ${CL.join(", ").replaceAll("-mainnet","")} <br>and  thenrefresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);return(0)}
+	if(!(isOnRightChain(window.ethereum.chainId))){notice(`[2] Wrong network detected!<br>Please switch to a supported chain:<br> ${CL.join(", ").replaceAll("-mainnet","")} <br>and  thenrefresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);return(0)}
 	if(typeof provider == "undefined"){notice(`Provider not detected!<br>Please connect with a web3 provider or wallet and refresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);return(0)}
 	/*
 	if(!
@@ -290,7 +290,9 @@ LPABI = ["function balanceOf(address) public view returns(uint)","function metad
 async function paintStatic() {
 
     document.getElementsByClassName('tablinks')[0].click();
-
+	paintStaticTableHeads()
+}
+function paintStaticTableHeads(){
 
 	$("supplies-table").innerHTML = `
 		<div class="c2a90-row">
@@ -331,7 +333,7 @@ async function paintStatic() {
 
 async function dexstats() {
 
-
+	paintStaticTableHeads()
 	TVLGURU_FANTOM = new ethers.Contract("0x0786c3a78f5133f08c1c70953b8b10376bc6dcad",["function p_t_coin_usd(address) public view returns(uint)"], CHAINS["fantom-mainnet"].pp);
 	_price_elite_fantom = (await TVLGURU_FANTOM.p_t_coin_usd("0xea035a13b64cb49d85e2f0a2736c9604cb21599c"))/1e18;
 	_price_elite = _price_elite_fantom / 300000;
@@ -426,7 +428,7 @@ async function gubs() {
 	sortit(2, 'portfolio-table', 'c2a90-row', 'c2a90-row-item', "d", 1, 1);
 
 	//let _curnetid = (await provider.getNetwork()).chainId
-	_curnetid = (await signer.getNetwork()).chainId
+	_curnetid = (await provider.getNetwork()).chainId
 	_curnet = {}
 	for(i=0;i<CL.length;i++) {
 		if( CHAINS[CL[i]].chainId == _curnetid ) {
