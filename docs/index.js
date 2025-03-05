@@ -34,7 +34,7 @@ function openTab(evt, tabName) {
 }
 
 function isOnRightChain(_chain) {
-	return (Object.keys(CHAINS).map(i=>CHAINS[i].chainId)).indexOf(_chain) > -1 ? true : false;
+	return (Object.keys(CHAINS).map(i=>CHAINS[i].chainId)).indexOf(Number(_chain)) > -1 ? true : false;
 }
 
 async function basetrip() {
@@ -59,7 +59,7 @@ async function basetrip() {
 			"<h3>Wrong network!</h3>You are on Chain ID #"
 			+ window.ethereum.chainId
 			+". Please Switch to one of these Supported Networks:<br>"
-			+ CL.join(",<br> ").replaceAll("-mainnet","")
+			+ CL.join(", ").replaceAll("-mainnet","")
 		);
 		await dexstats();
 		// dont return, can still request change of chain
@@ -118,9 +118,24 @@ async function cw() {
 	cw2();
 }
 async function cw2() {
-	if(!(window.ethereum)){notice(`Metamask not detected!<br>Please Refresh the Page<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);return(0)}
-	if(!(isOnRightChain(window.ethereum.chainId))){notice(`[2] Wrong network detected!<br>Please switch to a supported chain:<br> ${CL.join(", ").replaceAll("-mainnet","")} <br>and  thenrefresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);return(0)}
-	if(typeof provider == "undefined"){notice(`Provider not detected!<br>Please connect with a web3 provider or wallet and refresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);return(0)}
+	if(!(window.ethereum)) {
+		notice(`Metamask not detected!<br>Please Refresh the Page<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);
+		return(0);
+	}
+	if(!(isOnRightChain(window.ethereum.chainId))) {
+		notice(
+			"<h3>Wrong network!</h3>You are on Chain ID #"
+			+ window.ethereum.chainId
+			+". Please Switch to one of these Supported Networks:<br>"
+			+ CL.join(", ").replaceAll("-mainnet","")
+			+ ` and then refresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`
+		);
+		return(0)
+	}
+	if(typeof provider == "undefined"){
+		notice(`Provider not detected!<br>Please connect with a web3 provider or wallet and refresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);
+		return(0);
+	}
 	/*
 	if(!
 		(isFinite(Number(accounts[0])))
@@ -237,7 +252,7 @@ const timeFormat = (timestamp) => {const seconds = Math.floor((Date.now() - time
 
 
 function sortit(n,_maintable,_trName,_tdName,_dir,_firstRow,_extraRows) {
-console.log(n,_maintable,_trName,_tdName,_dir,_firstRow,_extraRows)
+  //console.log(n,_maintable,_trName,_tdName,_dir,_firstRow,_extraRows)
   var t, r, z, i, x, y, v, b, c = 0;
   t = document.getElementById(_maintable);//.getElementsByTagName("tbody")[0];
   z = true;
@@ -283,16 +298,19 @@ console.log(n,_maintable,_trName,_tdName,_dir,_firstRow,_extraRows)
 
 
 
-LPABI = ["function balanceOf(address) public view returns(uint)","function metadata() public view returns(uint,uint,uint,uint,bool,address,address)","function getAssetPrice(address) public view returns(uint)","function approve(address,uint)","function allowance(address,address) public view returns(uint)","function earned(address,address) public view returns(uint)","function earnings(address,address) public view returns(uint)","function name() public view returns(string)","function symbol() public view returns(string)","function tvl() public view returns(uint)","function tvlDeposits() public view returns(uint)","function apr() public view returns(uint)","function totalSupply() public view returns(uint)","function deposit(uint)","function withdraw(uint)","function depositAll()","function withdrawAll()","function mint(uint)","function redeem(uint)","function mintAll()","function redeemAll()"]
+LPABI = ["function balanceOf(address) public view returns(uint)","function metadata() public view returns(uint,uint,uint,uint,bool,address,address)","function getAssetPrice(address) public view returns(uint)","function approve(address,uint)","function allowance(address,address) public view returns(uint)","function earned(address,address) public view returns(uint)","function earnings(address,address) public view returns(uint)","function name() public view returns(string)","function symbol() public view returns(string)","function tvl() public view returns(uint)","function tvlDeposits() public view returns(uint)","function apr() public view returns(uint)","function totalSupply() public view returns(uint)","function deposit(uint)","function withdraw(uint)","function depositAll()","function withdrawAll()","function mint(uint)","function redeem(uint)","function mintAll()","function redeemAll()","function estimateSendFee(uint16 _dstChainId, bytes32 _toAddress, uint _amount, bool _useZro, bytes calldata _adapterParams) public view virtual override returns (uint nativeFee, uint zroFee)"]
+MULTICALLPARAMS = { address: "0xcA11bde05977b3631167028862bE2a173976CA11", abi : [{"inputs":[{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call[]","name":"calls","type":"tuple[]"}],"name":"aggregate","outputs":[{"internalType":"uint256","name":"blockNumber","type":"uint256"},{"internalType":"bytes[]","name":"returnData","type":"bytes[]"}],"stateMutability":"payable","type":"function"},{"inputs":[{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bool","name":"allowFailure","type":"bool"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call3[]","name":"calls","type":"tuple[]"}],"name":"aggregate3","outputs":[{"components":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"returnData","type":"bytes"}],"internalType":"struct Multicall3.Result[]","name":"returnData","type":"tuple[]"}],"stateMutability":"payable","type":"function"},{"inputs":[{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bool","name":"allowFailure","type":"bool"},{"internalType":"uint256","name":"value","type":"uint256"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call3Value[]","name":"calls","type":"tuple[]"}],"name":"aggregate3Value","outputs":[{"components":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"returnData","type":"bytes"}],"internalType":"struct Multicall3.Result[]","name":"returnData","type":"tuple[]"}],"stateMutability":"payable","type":"function"},{"inputs":[{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call[]","name":"calls","type":"tuple[]"}],"name":"blockAndAggregate","outputs":[{"internalType":"uint256","name":"blockNumber","type":"uint256"},{"internalType":"bytes32","name":"blockHash","type":"bytes32"},{"components":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"returnData","type":"bytes"}],"internalType":"struct Multicall3.Result[]","name":"returnData","type":"tuple[]"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getBasefee","outputs":[{"internalType":"uint256","name":"basefee","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"blockNumber","type":"uint256"}],"name":"getBlockHash","outputs":[{"internalType":"bytes32","name":"blockHash","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getBlockNumber","outputs":[{"internalType":"uint256","name":"blockNumber","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getChainId","outputs":[{"internalType":"uint256","name":"chainid","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCurrentBlockCoinbase","outputs":[{"internalType":"address","name":"coinbase","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCurrentBlockDifficulty","outputs":[{"internalType":"uint256","name":"difficulty","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCurrentBlockGasLimit","outputs":[{"internalType":"uint256","name":"gaslimit","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCurrentBlockTimestamp","outputs":[{"internalType":"uint256","name":"timestamp","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"addr","type":"address"}],"name":"getEthBalance","outputs":[{"internalType":"uint256","name":"balance","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLastBlockHash","outputs":[{"internalType":"bytes32","name":"blockHash","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bool","name":"requireSuccess","type":"bool"},{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call[]","name":"calls","type":"tuple[]"}],"name":"tryAggregate","outputs":[{"components":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"returnData","type":"bytes"}],"internalType":"struct Multicall3.Result[]","name":"returnData","type":"tuple[]"}],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"bool","name":"requireSuccess","type":"bool"},{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call[]","name":"calls","type":"tuple[]"}],"name":"tryBlockAndAggregate","outputs":[{"internalType":"uint256","name":"blockNumber","type":"uint256"},{"internalType":"bytes32","name":"blockHash","type":"bytes32"},{"components":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"returnData","type":"bytes"}],"internalType":"struct Multicall3.Result[]","name":"returnData","type":"tuple[]"}],"stateMutability":"payable","type":"function"}] }
 
 
 
 async function paintStatic() {
 
     document.getElementsByClassName('tablinks')[0].click();
-	paintStaticTableHeads()
+	paintStaticSuppliesTableHeads()
+	paintStaticPortfolioTableHeads()
+	paintStaticBridgeTableHeads()
 }
-function paintStaticTableHeads(){
+function paintStaticSuppliesTableHeads(){
 
 	$("supplies-table").innerHTML = `
 		<div class="c2a90-row">
@@ -304,6 +322,8 @@ function paintStaticTableHeads(){
 		</div>
 		<div id="supplies-loader" style="font-family:italic">Counting ≢ across 10 chains, please wait ...</div>
 	`;
+}
+function paintStaticPortfolioTableHeads(){
 
 	$("portfolio-table").innerHTML = `
 		<div class="c2a90-row">
@@ -316,6 +336,8 @@ function paintStaticTableHeads(){
 		<div id="portfolio-loader" style="font-family:italic">Counting your ≢ balances across 10 chains, please wait ...</div>
 	`;
 
+}
+function paintStaticBridgeTableHeads(){
 	$("bridge-table").innerHTML = `
 		<div class="c2a90-row">
 			<div onclick="sortit(0, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">					<br><span class="c2a90-row-byline"></span></div>
@@ -340,7 +362,7 @@ async function dexstats() {
 	_supplies = (await Promise.all(ELITE.map(i=> i.totalSupply() ))).map( i=> Number(i)/1e18 )
 	_totsup = _supplies.reduce( (a,b) => a+b )
 
-	paintStaticTableHeads()
+	paintStaticSuppliesTableHeads()
 	try{$("supplies-loader").remove()}catch(e){}
 	$("topstats-totsup").innerHTML = "≢"+fornum6( _totsup , 0)
 	$("topstats-fdv").innerHTML = "$"+fornum6(_price_elite * _totsup , 0)
@@ -399,6 +421,7 @@ async function gubs() {
 	_userbals= (await Promise.all(ELITE.map(i=> i.balanceOf( window.ethereum.selectedAddress ) ))).map( i=> Number(i)/1e18 )
 	_usertot = _userbals.reduce( (a,b) => a+b )
 
+	paintStaticPortfolioTableHeads()
 	try{$("portfolio-loader").remove()}catch(e){}
 
 
@@ -428,7 +451,7 @@ async function gubs() {
 	sortit(2, 'portfolio-table', 'c2a90-row', 'c2a90-row-item', "d", 1, 1);
 
 	//let _curnetid = (await provider.getNetwork()).chainId
-	_curnetid = (await provider.getNetwork()).chainId
+	_curnetid = window.ethereum.chainId
 	_curnet = {}
 	for(i=0;i<CL.length;i++) {
 		if( CHAINS[CL[i]].chainId == _curnetid ) {
@@ -449,10 +472,11 @@ async function gubs() {
 	}
 
 	$("bridge-curnet-bal").innerHTML = `
-		<img class="curchain-icon" src="${ CHAINS[CL[i]].chainLogo }"> Connected to ${_curnet.name}.
+		<img class="curchain-icon" src="${ CHAINS[CL[_curnet.clindex]].chainLogo }"> Connected to ${_curnet.name}.
 		<h3>≢${ fornum6(_userbals[_curnet.clindex] ,0) } in Wallet</h3>
 	`;
 
+	paintStaticBridgeTableHeads()
 	try{$("bridge-loader").remove()}catch(e){}
 
 	for(i=0;i<CL.length;i++) {
@@ -462,17 +486,60 @@ async function gubs() {
 			<div class="c2a90-row">
 				<div class="c2a90-row-item"><img src="${ CHAINS[CL[i]].chainLogo }"></div>
 				<div class="c2a90-row-item">${ CL[i].replaceAll("-mainnet","") }</div>
+				<div class="c2a90-row-item"><span class="bridge-btn-gascheck" id="bridge-btn-gascheck-${i}" onclick='bridge_gasCheck(${i})'>&#x21bb; Check Gas Cost</span></div>
 				<div class="c2a90-row-item"><input placeholder="≢ to ${CL[i].replaceAll('-mainnet','')}" id="bridge-inp-${i}"/></div>
-				<div class="c2a90-row-item"><span class="bridge-btn-gascheck" onclick='this.innerHTML=gasCheck(${i})'>&#x21bb; Check Gas Cost</span></div>
-				<div class="c2a90-row-item"><button class="bridge-btn-submit" onclick='bridgeSubmit(${i})'>Bridge </button></div>
+				<div class="c2a90-row-item"><button class="bridge-btn-submit" onclick='bridge_submit(${i})'>Bridge </button></div>
 			</div>
 		`;
 	}
 
+	_mc = new ethers.Contract( MULTICALLPARAMS.address, MULTICALLPARAMS.abi, _curnet.pp );
+	_alltolzids = CL.map( i=> CHAINS[i].lzid);
+	_allgascalls = _alltolzids.map(
+		i=> {
+			return {
+				allowFailure: true,
+				target: ELITE[_curnet.clindex].address ,
+				callData: (
+					ELITE[ _curnet.clindex ].interface.encodeFunctionData( //
+						"estimateSendFee" ,
+						[
+							i,
+							ethers.utils.hexZeroPad( SAFE_ADDR, 32) ,
+							BigInt(1e18),
+							false,
+							DEFAULT_PARAMS
+						]
+					)
+				)
+			}
+		}
+	)
+	_allgascosts = await _mc.callStatic.aggregate3(_allgascalls)
+
+
+	_allgascosts = _allgascosts.map( i=> { console.log(i); return ( i[0]==false ? "Route Unavailable" : ( fornum6(Number(i[1].substr(0,66))/1e18 , 6) + " " + CHAINS[CL[_curnet.clindex]].gasName) )} )
+
+	for(i=0;i<CL.length;i++) {
+		if( i == _curnet.clindex ) continue;
+		$("bridge-btn-gascheck-"+i).innerHTML = _allgascosts[i]
+	}
 
 	return;
 }
 
+const DEFAULT_PARAMS = "0x00010000000000000000000000000000000000000000000000000000000000030d40";
+
+async function bridge_gasCheck(_toclid) {
+	let _gasreq = await ELITE[_curnet.clindex].estimateSendFee(
+		CHAINS[CL[_toclid]].lzid ,
+		ethers.utils.hexZeroPad(ethereum.selectedAddress, 32) ,
+		BigInt(1e18),
+		false,
+		DEFAULT_PARAMS
+	)
+	$("bridge-btn-gascheck-"+_toclid).innerHTML = "&#x21bb; " + fornum6(_gasreq[0]/1e18,6) + " " + CHAINS[_curnet.clindex].gasName
+}
 
 
 
@@ -558,6 +625,8 @@ async function mint(ismax) {
 	`);
 	gubs();
 }
+
+
 
 async function redeem(ismax) {
 	_DEPOSITOR = new ethers.Contract(DEPOSITOR, LPABI, signer);
