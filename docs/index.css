@@ -430,7 +430,7 @@ footer{
 #Bridge .c2a90-row div:nth-child(3),
 #Bridge .c2a90-row div:nth-child(4),
 #Bridge .c2a90-row-item:nth-child(4) input {
-    text-align: center;
+    text-align: right;
 }
 
 .collection, .explorer {

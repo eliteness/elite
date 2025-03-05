@@ -320,7 +320,7 @@ function paintStaticSuppliesTableHeads(){
 			<div onclick="sortit(3, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 1)">Valuations		<br><span class="c2a90-row-byline">Capitalization</span></div>
 			<div onclick="sortit(4, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 1)">Percentages		<br><span class="c2a90-row-byline">Distribution</span></div>
 		</div>
-		<div id="supplies-loader" style="font-family:italic">Counting ≢ across 10 chains, please wait ...</div>
+		<div id="supplies-loader" style="font-family:italic"><br><br>Counting ≢ across 10 chains, please wait ...</div>
 	`;
 }
 function paintStaticPortfolioTableHeads(){
@@ -333,7 +333,7 @@ function paintStaticPortfolioTableHeads(){
 			<div onclick="sortit(3, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 1)">Valuations		<br><span class="c2a90-row-byline">Capitalization</span></div>
 			<div onclick="sortit(4, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 1)">Percentages		<br><span class="c2a90-row-byline">Distribution</span></div>
 		</div>
-		<div id="portfolio-loader" style="font-family:italic">Counting your ≢ balances across 10 chains, please wait ...</div>
+		<div id="portfolio-loader" style="font-family:italic"><br><br>Counting your ≢ balances across 10 chains, please wait ...</div>
 	`;
 
 }
@@ -343,10 +343,10 @@ function paintStaticBridgeTableHeads(){
 			<div onclick="sortit(0, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">					<br><span class="c2a90-row-byline"></span></div>
 			<div onclick="sortit(1, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">Select Chain		<br><span class="c2a90-row-byline">to send ≢ to</span></div>
 			<div onclick="sortit(2, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">Gas & LZ Cost		<br><span class="c2a90-row-byline">On-chain Supply</span></div>
-			<div onclick="sortit(3, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)"> ≢ to Bridge		<br><span class="c2a90-row-byline">Input your amount<span></div>
+			<div onclick="sortit(3, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">Amount of ≢ to Bridge		<br><span class="c2a90-row-byline">Input your amount<span></div>
 			<div onclick="sortit(4, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">Actions<br><span class="c2a90-row-byline">Start Transaction</span></div>
 		</div>
-		<div id="bridge-loader" style="font-family:italic">Counting your ≢ balances across 10 chains, please wait ...</div>
+		<div id="bridge-loader" style="font-family:italic"><br><br>Counting your ≢ balances across 10 chains, please wait ...</div>
 	`;
 
     return
@@ -518,7 +518,7 @@ async function gubs() {
 	_allgascosts = await _mc.callStatic.aggregate3(_allgascalls)
 
 
-	_allgascosts = _allgascosts.map( i=> { console.log(i); return ( i[0]==false ? "Route Unavailable" : ( fornum6(Number(i[1].substr(0,66))/1e18 , 6) + " " + CHAINS[CL[_curnet.clindex]].gasName) )} )
+	_allgascosts = _allgascosts.map( i=> { return ( i[0]==false ? "Route Unavailable" : ( fornum6(Number(i[1].substr(0,66))/1e18 , 6) + " " + CHAINS[CL[_curnet.clindex]].gasName) )} )
 
 	for(i=0;i<CL.length;i++) {
 		if( i == _curnet.clindex ) continue;
