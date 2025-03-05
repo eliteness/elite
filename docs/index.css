@@ -157,6 +157,10 @@ footer{
     color: aqua;
 }
 
+.content h3 {
+  margin: auto;
+}
+
 .topnav {
     display: flex;
     justify-content: space-between;
