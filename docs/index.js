@@ -643,17 +643,19 @@ async function bridge_submit(_toclid) {
 	);
 
 	console.log("Bridging!!!", [
-		CHAINS[0].wallet.address,
-		CHAINS[1].lzid,
-		ethers.utils.hexZeroPad(CHAINS[1].wallet.address, 32),
-		BigInt(_XCTESTAMT_01),
-		BigInt(1337),
+		window.ethereum.selectedAddress ,
+		CHAINS[CL[_toclid]].lzid ,
+		ethers.utils.hexZeroPad( window.ethereum.selectedAddress , 32) ,
+		_oamt ,
+		_oamt - BigInt(_bridgefee) ,
 		{
-			refundAddress:CHAINS[0].wallet.address,
+			refundAddress: window.ethereum.selectedAddress ,
 			zroPaymentAddress:"0x0000000000000000000000000000000000000000",
 			adapterParams: DEFAULT_PARAMS
 		},
-		{ value: nf01 }
+		{
+			value : _gasreq[0]
+		}
 	]);
 
 
