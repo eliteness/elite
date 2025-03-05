@@ -56,7 +56,7 @@ async function basetrip() {
 	}
 	else if( ! isOnRightChain(window.ethereum.chainId) ) {
 		notice(
-			"<h3>Wrong network!</h3>You are on Chain ID #"
+			"<h3>[1] Wrong network!</h3>You are on Chain ID #"
 			+ window.ethereum.chainId
 			+". Please Switch to one of these Supported Networks:<br>"
 			+ CL.join(", ").replaceAll("-mainnet","")
@@ -75,7 +75,7 @@ async function basetrip() {
 		console.log("Couldn't find Ethereum Provider - ", window.ethereum.chainId)
 		if((typeof Number(window.ethereum.chainId) == "number")){
 			notice(
-				"<h3>Wrong network!</h3>You are on Chain ID #"
+				"<h3>[2] Wrong network!</h3>You are on Chain ID #"
 				+ window.ethereum.chainId
 				+". Please Switch to one of these Supported Networks:<br>"
 				+ CL.join(",<br> ").replaceAll("-mainnet","")
@@ -124,13 +124,13 @@ async function cw2() {
 	}
 	if(!(isOnRightChain(window.ethereum.chainId))) {
 		notice(
-			"<h3>Wrong network!</h3>You are on Chain ID #"
+			"<h3>[3] Wrong network!</h3>You are on Chain ID #"
 			+ window.ethereum.chainId
 			+". Please Switch to one of these Supported Networks:<br>"
 			+ CL.join(", ").replaceAll("-mainnet","")
 			+ `<br><br>Refresh this page once you do!.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`
 		);
-		return(0)
+		return(0);
 	}
 	if(typeof provider == "undefined"){
 		notice(`Provider not detected!<br><br>Please connect with a web3 provider or wallet and then Refresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);
@@ -604,7 +604,7 @@ async function bridge_submit(_toclid) {
 
 	notice(`
 		<h2>Check all details first & Sign this Transaction with your Wallet!</h2>
-		<h3>${ fornum6(Number(_gasreq[0])/1e18, 6) } $CHAINS[_curnet.clindex].gasName}</h3>
+		<h3>${ fornum6(Number(_gasreq[0])/1e18, 6) } ${CHAINS[_curnet.clindex].gasName}</h3>
 		Gas fee paid to LayerZero Decentralized Validator Network
 		<br><br>
 		<h3>≢${ fornum6(Number(_bridgefee)/1e18,0) }</h3>
@@ -622,6 +622,8 @@ async function bridge_submit(_toclid) {
 		<h3>Recipient Address</h3>
 		${ window.ethereum.selectedAddress }
 	`);
+
+	ELITE[_curnet.clindex] = ELITE[_curnet.clindex].connect(signer);
 
 	let _txh = await ELITE[_curnet.clindex].sendFrom(
 		window.ethereum.selectedAddress ,
