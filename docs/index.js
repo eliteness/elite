@@ -104,7 +104,7 @@ async function basetrip() {
     		}]
 		});
 		//window.location.reload()
-		notice(`Switching Network...<br>Please Refresh the Page<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);
+		notice(`Switching Network...<br><br>Please Refresh the Page<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);
 	}
 	//DrefreshFarm()
 	arf()
@@ -119,7 +119,7 @@ async function cw() {
 }
 async function cw2() {
 	if(!(window.ethereum)) {
-		notice(`Metamask not detected!<br>Please Refresh the Page<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);
+		notice(`Metamask not detected!<br><br>Please Refresh the Page<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);
 		return(0);
 	}
 	if(!(isOnRightChain(window.ethereum.chainId))) {
@@ -128,12 +128,12 @@ async function cw2() {
 			+ window.ethereum.chainId
 			+". Please Switch to one of these Supported Networks:<br>"
 			+ CL.join(", ").replaceAll("-mainnet","")
-			+ ` and then refresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`
+			+ `<br><br>Refresh this page once you do!.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`
 		);
 		return(0)
 	}
 	if(typeof provider == "undefined"){
-		notice(`Provider not detected!<br>Please connect with a web3 provider or wallet and refresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);
+		notice(`Provider not detected!<br><br>Please connect with a web3 provider or wallet and then Refresh this page.<br><button onclick="window.location.reload()" class="c2a-1 submit equal-gradient c2abtn">Refresh</button>`);
 		return(0);
 	}
 	/*
@@ -298,7 +298,8 @@ function sortit(n,_maintable,_trName,_tdName,_dir,_firstRow,_extraRows) {
 
 
 
-LPABI = ["function balanceOf(address) public view returns(uint)","function metadata() public view returns(uint,uint,uint,uint,bool,address,address)","function getAssetPrice(address) public view returns(uint)","function approve(address,uint)","function allowance(address,address) public view returns(uint)","function earned(address,address) public view returns(uint)","function earnings(address,address) public view returns(uint)","function name() public view returns(string)","function symbol() public view returns(string)","function tvl() public view returns(uint)","function tvlDeposits() public view returns(uint)","function apr() public view returns(uint)","function totalSupply() public view returns(uint)","function deposit(uint)","function withdraw(uint)","function depositAll()","function withdrawAll()","function mint(uint)","function redeem(uint)","function mintAll()","function redeemAll()","function estimateSendFee(uint16 _dstChainId, bytes32 _toAddress, uint _amount, bool _useZro, bytes calldata _adapterParams) public view virtual override returns (uint nativeFee, uint zroFee)"]
+LPABI = ["function balanceOf(address) public view returns(uint)","function metadata() public view returns(uint,uint,uint,uint,bool,address,address)","function getAssetPrice(address) public view returns(uint)","function approve(address,uint)","function allowance(address,address) public view returns(uint)","function earned(address,address) public view returns(uint)","function earnings(address,address) public view returns(uint)","function name() public view returns(string)","function symbol() public view returns(string)","function tvl() public view returns(uint)","function tvlDeposits() public view returns(uint)","function apr() public view returns(uint)","function totalSupply() public view returns(uint)","function deposit(uint)","function withdraw(uint)","function depositAll()","function withdrawAll()","function mint(uint)","function redeem(uint)","function mintAll()","function redeemAll()","function estimateSendFee(uint16 _dstChainId, bytes32 _toAddress, uint _amount, bool _useZro, bytes calldata _adapterParams) public view virtual override returns (uint nativeFee, uint zroFee)","function quoteOFTFee(uint16 _dstChainId, uint _amount) public virtual view returns (uint fee)"]
+
 MULTICALLPARAMS = { address: "0xcA11bde05977b3631167028862bE2a173976CA11", abi : [{"inputs":[{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call[]","name":"calls","type":"tuple[]"}],"name":"aggregate","outputs":[{"internalType":"uint256","name":"blockNumber","type":"uint256"},{"internalType":"bytes[]","name":"returnData","type":"bytes[]"}],"stateMutability":"payable","type":"function"},{"inputs":[{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bool","name":"allowFailure","type":"bool"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call3[]","name":"calls","type":"tuple[]"}],"name":"aggregate3","outputs":[{"components":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"returnData","type":"bytes"}],"internalType":"struct Multicall3.Result[]","name":"returnData","type":"tuple[]"}],"stateMutability":"payable","type":"function"},{"inputs":[{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bool","name":"allowFailure","type":"bool"},{"internalType":"uint256","name":"value","type":"uint256"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call3Value[]","name":"calls","type":"tuple[]"}],"name":"aggregate3Value","outputs":[{"components":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"returnData","type":"bytes"}],"internalType":"struct Multicall3.Result[]","name":"returnData","type":"tuple[]"}],"stateMutability":"payable","type":"function"},{"inputs":[{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call[]","name":"calls","type":"tuple[]"}],"name":"blockAndAggregate","outputs":[{"internalType":"uint256","name":"blockNumber","type":"uint256"},{"internalType":"bytes32","name":"blockHash","type":"bytes32"},{"components":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"returnData","type":"bytes"}],"internalType":"struct Multicall3.Result[]","name":"returnData","type":"tuple[]"}],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getBasefee","outputs":[{"internalType":"uint256","name":"basefee","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"blockNumber","type":"uint256"}],"name":"getBlockHash","outputs":[{"internalType":"bytes32","name":"blockHash","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getBlockNumber","outputs":[{"internalType":"uint256","name":"blockNumber","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getChainId","outputs":[{"internalType":"uint256","name":"chainid","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCurrentBlockCoinbase","outputs":[{"internalType":"address","name":"coinbase","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCurrentBlockDifficulty","outputs":[{"internalType":"uint256","name":"difficulty","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCurrentBlockGasLimit","outputs":[{"internalType":"uint256","name":"gaslimit","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getCurrentBlockTimestamp","outputs":[{"internalType":"uint256","name":"timestamp","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"addr","type":"address"}],"name":"getEthBalance","outputs":[{"internalType":"uint256","name":"balance","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLastBlockHash","outputs":[{"internalType":"bytes32","name":"blockHash","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bool","name":"requireSuccess","type":"bool"},{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call[]","name":"calls","type":"tuple[]"}],"name":"tryAggregate","outputs":[{"components":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"returnData","type":"bytes"}],"internalType":"struct Multicall3.Result[]","name":"returnData","type":"tuple[]"}],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"bool","name":"requireSuccess","type":"bool"},{"components":[{"internalType":"address","name":"target","type":"address"},{"internalType":"bytes","name":"callData","type":"bytes"}],"internalType":"struct Multicall3.Call[]","name":"calls","type":"tuple[]"}],"name":"tryBlockAndAggregate","outputs":[{"internalType":"uint256","name":"blockNumber","type":"uint256"},{"internalType":"bytes32","name":"blockHash","type":"bytes32"},{"components":[{"internalType":"bool","name":"success","type":"bool"},{"internalType":"bytes","name":"returnData","type":"bytes"}],"internalType":"struct Multicall3.Result[]","name":"returnData","type":"tuple[]"}],"stateMutability":"payable","type":"function"}] }
 
 
@@ -333,7 +334,7 @@ function paintStaticPortfolioTableHeads(){
 			<div onclick="sortit(3, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 1)">Valuations		<br><span class="c2a90-row-byline">Capitalization</span></div>
 			<div onclick="sortit(4, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 1)">Percentages		<br><span class="c2a90-row-byline">Distribution</span></div>
 		</div>
-		<div id="portfolio-loader" style="font-family:italic"><br><br>Counting your ≢ balances across 10 chains, please wait ...</div>
+		<div id="portfolio-loader" style="font-family:italic"><br><br>Counting your ≢ balances across 10 chains, please wait for your wallet connection ...</div>
 	`;
 
 }
@@ -346,7 +347,7 @@ function paintStaticBridgeTableHeads(){
 			<div onclick="sortit(3, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">Amount of ≢ to Bridge		<br><span class="c2a90-row-byline">Input your amount<span></div>
 			<div onclick="sortit(4, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">Actions<br><span class="c2a90-row-byline">Start Transaction</span></div>
 		</div>
-		<div id="bridge-loader" style="font-family:italic"><br><br>Counting your ≢ balances across 10 chains, please wait ...</div>
+		<div id="bridge-loader" style="font-family:italic"><br><br>Counting your ≢ balances across 10 chains, please wait for your wallet connection...</div>
 	`;
 
     return
@@ -542,324 +543,145 @@ async function bridge_gasCheck(_toclid) {
 }
 
 
+async function bridge_submit(_toclid) {
+	console.log("bridge_submit", _toclid);
 
-
-
-
-
-
-
-async function mint(ismax) {
-	_BASE = new ethers.Contract(BASE, LPABI, signer);
-	_WRAP = new ethers.Contract(WRAP, LPABI, signer);
-	_DEPOSITOR = new ethers.Contract(DEPOSITOR, LPABI, signer);
-
-	al = await Promise.all([
-		_BASE.allowance(window.ethereum.selectedAddress, DEPOSITOR),
-		_BASE.balanceOf(window.ethereum.selectedAddress)
-	]);
-
-	_oamt = null;
-
-	if(ismax) {
-		_oamt = al[1];
+	if(!( window?.ethereum?.selectedAddress )) {
+		notice(`A connected wallet could not be found.<br><br>Please retry!`)
+		return;
 	}
 
-	else {
-		_oamt = $("mint-amt").value;
-		if(!isFinite(_oamt) || _oamt<1/(10**DECIMAL)){notice(`Invalid ${BASE_NAME} amount!`); return;}
-		_oamt = BigInt(Math.floor(_oamt * (10**DECIMAL)))
+	if( window.ethereum.chainId != _curnet.chainId ) {
+		notice(`Wrong chain in Wallet (ID: ${window.ethereum.chainId}) compared to desired Chain (ID: ${_curnet.chainId})`);
+		return;
 	}
 
-	if(Number(_oamt)>Number(al[1])) {notice(`<h2>Insufficient Balance!</h2><h3>Desired Amount:</h3>${Number(_oamt)/(10**DECIMAL)}<br><h3>Actual Balance:</h3>${Number(al[1])/(10**DECIMAL)}<br><br><b>Please reduce the amount and retry again, or accumulate some more ${BASE_NAME}.`);return;}
+	let _oamt = $("bridge-inp-"+_toclid).value;
 
-	if(Number(_oamt)>Number(al[0])){
+	if(!isFinite(_oamt) || _oamt<1){notice(`You entered ${_oamt}<br><br>It is an invalid amount!<br><br>Remove decimals & use whole numbers! Minimum amount: ≢1`); return;}
+
+	_oamt = BigInt(Math.floor(_oamt)) * (10n**18n)
+
+	if( Number(_oamt/(10n**18n)) > _userbals[_curnet.clindex] ) {
 		notice(`
-			<h3>Approval required</h3>
-			Please grant ${BASE_NAME} allowance.<br><br>
-			<h4><u><i>Confirm this transaction in your wallet!</i></u></h4>
-		`);
-		let _tr = await _BASE.approve(DEPOSITOR,_oamt);
-		console.log(_tr);
-		notice(`
-			<h3>Submitting Approval Transaction!</h3>
-			<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-		`);
-		_tw = await _tr.wait()
-		console.log(_tw)
-		notice(`
-			<h3>Approval Completed!</h3>
-			<br>Spending rights of ${Number(_oamt)/(10**DECIMAL)} ${BASE_NAME} granted.<br>
-			<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
+			<h2>Insufficient Balance!</h2>
+			<h3>Desired Amount:</h3>
+			${ Number(_oamt/(10n**18n)) }
+			<br>
+			<h3>Actual Balance:</h3>
+			${ _userbals[_curnet.clindex] }
 			<br><br>
-			Please confirm the next step with your wallet provider now.
+			<b>Please reduce the amount and retry again, or accumulate some more ELITE.
 		`);
+		return;
 	}
 
+
 	notice(`
-		<h3>Order Summary</h3>
-		<b>Minting ${WRAP_NAME}</b><br>
-
-		<img style='height:20px;position:relative;top:4px' src="${BASE_LOGO}"> ${BASE_NAME} to Deposit: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} Expected: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-
-		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
+		<h2>Constructing Bridge Request</h2>
+		<h3>≢${ Number(_oamt/(10n**18n)) }</h3>
+		<h3>From <img src="${ CHAINS[CL[_curnet.clindex]].chainLogo }"> ${CL[_curnet.clindex]}</h3>
+		<i>Current Bal: ≢${ _userbals[_curnet.clindex] }</i>
+		<br>
+		<h3>To <img src="${ CHAINS[CL[_toclid]].chainLogo }"> ${CL[_toclid]}</h3>
+		<i>Current Bal: ≢${ _userbals[_toclid] }</i>
+		<br>
+		<h3>Recipient Address</h3>
+		${ window.ethereum.selectedAddress }
 	`);
-	let _tr = await _DEPOSITOR.mint(_oamt,{gasLimit:BigInt(1_200_000)});
-	console.log(_tr);
+
+	let _gasreq = await ELITE[_curnet.clindex].estimateSendFee(
+		CHAINS[CL[_toclid]].lzid ,
+		ethers.utils.hexZeroPad(ethereum.selectedAddress, 32) ,
+		_oamt,
+		false,
+		DEFAULT_PARAMS
+	);
+
+	let _bridgefee = await ELITE[_curnet.clindex].quoteOFTFee( CHAINS[CL[_toclid]].lzid , _oamt );
+
 	notice(`
-		<h3>Order Submitted!</h3>
-		<h4>Minting ${WRAP_NAME}</h4>
-		<img style='height:20px;position:relative;top:4px' src="${BASE_LOGO}"> ${BASE_NAME} Depositing: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} Expecting: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
+		<h2>Check all details first & Sign this Transaction with your Wallet!</h2>
+		<br>
+		<h3>${ fornum6(Number(_gasreq)/1e18, 6) } CHAINS[_curnet.clindex].gasName</h3>
+		Gas fee paid to LayerZero Decentralized Validator Network
+		<br>
+		<h3>≢${ fornum6(Number(_bridgefee)/1e18,0) }</h3>
+		Bridge Fees in ELITE paid to Eliteness.Network
+		<br>
+		<h3>Amount of ELITE to Bridge</h3>
+		≢${ Number(_oamt/(10n**18n)) }
+		<br>
+		<h3>From <img src="${ CHAINS[CL[_curnet.clindex]].chainLogo }"> ${CL[_curnet.clindex]}</h3>
+		<i>Current Bal: ≢${ _userbals[_curnet.clindex] }</i>
+		<br>
+		<h3>To <img src="${ CHAINS[CL[_toclid]].chainLogo }"> ${CL[_toclid]}</h3>
+		<i>Current Bal: ≢${ _userbals[_toclid] }</i>
+		<br>
+		<h3>Recipient Address</h3>
+		${ window.ethereum.selectedAddress }
 	`);
-	_tw = await _tr.wait();
-	console.log(_tw)
-	notice(`
-		<h3>Order Completed!</h3>
-		<img style='height:20px;position:relative;top:4px' src="${BASE_LOGO}"> ${BASE_NAME} Deposited: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} Received: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<br><br>
-		<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-	`);
-	gubs();
-}
 
+	let _txh = await ELITE[_curnet.clindex].sendFrom(
+		window.ethereum.selectedAddress ,
+		CHAINS[CL[_toclid]].lzid ,
+		ethers.utils.hexZeroPad( window.ethereum.selectedAddress , 32) ,
+		_oamt ,
+		_oamt - BigInt(_bridgefee) ,
+		{
+			refundAddress: window.ethereum.selectedAddress ,
+			zroPaymentAddress:"0x0000000000000000000000000000000000000000",
+			adapterParams: DEFAULT_PARAMS
+		},
+		{
+			value : _gasreq
+		}
 
+	);
 
-async function redeem(ismax) {
-	_DEPOSITOR = new ethers.Contract(DEPOSITOR, LPABI, signer);
-
-	al = await Promise.all([
-		_WRAP.allowance(window.ethereum.selectedAddress, DEPOSITOR),
-		_WRAP.balanceOf(window.ethereum.selectedAddress)
+	console.log("Bridging!!!", [
+		CHAINS[0].wallet.address,
+		CHAINS[1].lzid,
+		ethers.utils.hexZeroPad(CHAINS[1].wallet.address, 32),
+		BigInt(_XCTESTAMT_01),
+		BigInt(1337),
+		{
+			refundAddress:CHAINS[0].wallet.address,
+			zroPaymentAddress:"0x0000000000000000000000000000000000000000",
+			adapterParams: DEFAULT_PARAMS
+		},
+		{ value: nf01 }
 	]);
 
-	_oamt = null;
-
-	if(ismax) {
-		_oamt = al[1];
-	}
-
-	else {
-		_oamt = $("redeem-amt").value;
-		if(!isFinite(_oamt)){notice(`Invalid ${WRAP_NAME} amount!`); return;}
-		_oamt = BigInt(Math.floor(_oamt * (10**DECIMAL)))
-	}
-
-	if(Number(_oamt)>Number(al[1])) {notice(`<h2>Insufficient Balance!</h2><h3>Desired Amount:</h3>${Number(_oamt)/(10**DECIMAL)}<br><h3>Actual Balance:</h3>${al[1]/(10**DECIMAL)}<br><br><b>Please reduce the amount and retry again, or accumulate some more ${WRAP_NAME}.`);return;}
-
-	if(Number(_oamt)>Number(al[0])){
-		notice(`
-			<h3>Approval required</h3>
-			Please grant ${WRAP_NAME} allowance.<br><br>
-			<h4><u><i>Confirm this transaction in your wallet!</i></u></h4>
-		`);
-		let _tr = await _WRAP.approve(DEPOSITOR,_oamt);
-		console.log(_tr);
-		notice(`
-			<h3>Submitting Approval Transaction!</h3>
-			<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-		`);
-		_tw = await _tr.wait()
-		console.log(_tw)
-		notice(`
-			<h3>Approval Completed!</h3>
-			<br>Spending rights of ${Number(_oamt)/(10**DECIMAL)} ${WRAP_NAME} granted.<br>
-			<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-			<br><br>
-			Please confirm the next step with your wallet provider now.
-		`);
-	}
 
 	notice(`
-		<h3>Order Summary</h3>
-		<b>Redeeming ${WRAP_NAME}</b><br>
+		<h2>Bridging the chains!</h2>
+		Please track the progress of this transaction on LayerZero Explorer!
+		<br>
+		<h4><a target="_blank" href="https://layerzeroscan.com/tx/${_txh.hash}">Layerzeroscan.com/tx/${_txh.hash}</a></h4>
+		<br>
+		<h3>${ fornum6(Number(_gasreq)/1e18,0) } CHAINS[_curnet.clindex].gasName</h3>
+		Gas fee paid to LayerZero Decentralized Validator Network
+		<br>
+		<h3>≢${ fornum6(Number(_bridgefee)/1e18,0) }</h3>
+		Bridge Fees in ELITE paid to Eliteness.Network
+		<br>
+		<h3>Amount of ELITE to Bridge</h3>
+		≢${ Number(_oamt/(10n**18n)) }
+		<br>
+		<h3>From <img src="${ CHAINS[CL[_curnet.clindex]].chainLogo }"> ${CL[_curnet.clindex]}</h3>
+		<i>Current Bal: ≢${ _userbals[_curnet.clindex] }</i>
+		<br>
+		<h3>To <img src="${ CHAINS[CL[_toclid]].chainLogo }"> ${CL[_toclid]}</h3>
+		<i>Current Bal: ≢${ _userbals[_toclid] }</i>
+		<br>
+		<h3>Recipient Address</h3>
+		${ window.ethereum.selectedAddress }
+	`);
 
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} to Redeem: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<img style='height:20px;position:relative;top:4px' src="${BASE_LOGO}"> ${BASE_NAME} Expected: <b>${fornum5(_oamt,DECIMAL)}</b><br>
 
-		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
-	`);
-	let _tr = await _DEPOSITOR.redeem(_oamt,{gasLimit:BigInt(1_200_000)});
-	console.log(_tr);
-	notice(`
-		<h3>Order Submitted!</h3>
-		<h4>Redeeming ${WRAP_NAME}</h4>
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} Redeeming: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<img style='height:20px;position:relative;top:4px' src="${BASE_LOGO}"> ${BASE_NAME} Expecting: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-	`);
-	_tw = await _tr.wait();
-	console.log(_tw)
-	notice(`
-		<h3>Order Completed!</h3>
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} Redeemed: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<img style='height:20px;position:relative;top:4px' src="${BASE_LOGO}"> ${BASE_NAME} Received: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<br><br>
-		<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-	`);
-	gubs();
 }
 
-async function stake(ismax) {
-	_BASE = new ethers.Contract(BASE, LPABI, signer);
-	_WRAP = new ethers.Contract(WRAP, LPABI, signer);
-	_FARM = new ethers.Contract(FARM, LPABI, signer);
-
-	al = await Promise.all([
-		_WRAP.allowance(window.ethereum.selectedAddress, FARM),
-		_WRAP.balanceOf(window.ethereum.selectedAddress)
-	]);
-
-	_oamt = null;
-
-	if(ismax) {
-		_oamt = al[1];
-	}
-
-	else {
-		_oamt = $("stake-amt").value;
-		if(!isFinite(_oamt) || _oamt<1/(10**DECIMAL)){notice(`Invalid ${BASE_NAME} amount!`); return;}
-		_oamt = BigInt(Math.floor(_oamt * (10**DECIMAL)))
-	}
 
 
-	if(Number(_oamt)>Number(al[1])) {notice(`<h2>Insufficient Balance!</h2><h3>Desired Amount:</h3>${Number(_oamt)/(10**DECIMAL)}<br><h3>Actual Balance:</h3>${Number(al[1])/(10**DECIMAL)}<br><br><b>Please reduce the amount and retry again, or accumulate some more ${WRAP_NAME}.`);return}
 
-	if(Number(_oamt)>Number(al[0])){
-		notice(`
-			<h3>Approval required</h3>
-			Please grant ${WRAP_NAME} allowance.<br><br>
-			<h4><u><i>Confirm this transaction in your wallet!</i></u></h4>
-		`);
-		//let _tr = await _WRAP.approve(FARM,_oamt);
-		let _tr = await _WRAP.approve(FARM, ethers.constants.MaxUint256);
-		console.log(_tr);
-		notice(`
-			<h3>Submitting Approval Transaction!</h3>
-			<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-		`);
-		_tw = await _tr.wait()
-		console.log(_tw)
-		notice(`
-			<h3>Approval Completed!</h3>
-			<br>Spending rights of ${Number(_oamt)/(10**DECIMAL)} ${WRAP_NAME} granted.<br>
-			<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-			<br><br>
-			Please confirm the next step with your wallet provider now.
-		`);
-	}
-
-	notice(`
-		<h3>Order Summary</h3>
-		<b>Staking ${WRAP_NAME}</b><br>
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} to Stake: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
-	`);
-	let _tr = await (ismax ? _FARM.depositAll() : _FARM.deposit(_oamt));
-	console.log(_tr);
-	notice(`
-		<h3>Order Submitted!</h3>
-		<h4>Staking ${WRAP_NAME}</h4>
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} Staking: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-	`);
-	_tw = await _tr.wait();
-	console.log(_tw)
-	notice(`
-		<h3>Order Completed!</h3>
-		<img style='height:20px;position:relative;top:4px' src="${BASE_LOGO}"> ${WRAP_NAME} Staked: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<br><br>
-		<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-	`);
-	gubs();
-}
-
-async function unstake(ismax) {
-	_FARM = new ethers.Contract(FARM, LPABI,signer);
-
-	al = await Promise.all([
-		_FARM.balanceOf(window.ethereum.selectedAddress)
-	]);
-
-	_oamt = null;
-
-	if(ismax) {
-		_oamt = al[0];
-	}
-	else {
-		_oamt = $("unstake-amt").value;
-		if(!isFinite(_oamt)){notice(`Invalid ${WRAP_NAME} amount!`); return;}
-		_oamt = BigInt(Math.floor(_oamt * (10**DECIMAL)));
-	}
-
-	if(Number(_oamt)>Number(al[1])) {notice(`<h2>Insufficient Staked Balance!</h2><h3>Desired Amount:</h3>${Number(_oamt)/(10**DECIMAL)}<br><h3>Actual Staked Balance:</h3>${al[1]/(10**DECIMAL)}<br><br><b>Please reduce the amount and retry again, or Stake some more ${WRAP_NAME}.`); return}
-
-	notice(`
-		<h3>Order Summary</h3>
-		<b>Withdrawing ${WRAP_NAME}</b><br>
-
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} to Redeem: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<img style='height:20px;position:relative;top:4px' src="${BASE_LOGO}"> ${BASE_NAME} Expected: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-
-		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
-	`);
-	let _tr = await (ismax ? _FARM.withdrawAll() : _FARM.withdraw(_oamt));
-	console.log(_tr);
-	notice(`
-		<h3>Order Submitted!</h3>
-		<h4>Unstaking ${WRAP_NAME}</h4>
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} Unstaking: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-	`);
-	_tw = await _tr.wait();
-	console.log(_tw)
-	notice(`
-		<h3>Order Completed!</h3>
-		<img style='height:20px;position:relative;top:4px' src="${WRAP_LOGO}"> ${WRAP_NAME} Unstaked: <b>${fornum5(_oamt,DECIMAL)}</b><br>
-		<br><br>
-		<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-	`);
-	gubs();
-}
-
-async function claim() {
-	_FARM = new ethers.Contract(FARM, LPABI,signer);
-	_VOTER = new ethers.Contract(VOTER, ["function claimRewards(address[],address[][])"],signer);
-
-	_earned = await Promise.all([
-		_FARM.earned(TEARNED[0], window.ethereum.selectedAddress),
-		_FARM.earned(TEARNED[1], window.ethereum.selectedAddress),
-	]);
-
-	if(Number(_earned[0]) == 0 && Number(_earned[1]) == 0 ) {notice(`<h3>You dont have any pending rewards!</h3> Stake some ${WRAP_NAME} to earn more!`); return;}
-
-	notice(`
-		<h3>Order Summary</h3>
-		<b>Claiming ${TEARNED_NAME.join("+")} rewards</b>
-		<br><img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO[0]}"> <b>${fornum5(_earned[0],18)}</b> ${TEARNED_NAME[0]}
-		<br><img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO[1]}"> <b>${fornum5(_earned[1],18)}</b> ${TEARNED_NAME[1]}
-		<h4><u><i>Please Confirm this transaction in your wallet!</i></u></h4>
-	`);
-	let _tr = await _VOTER.claimRewards([FARM],[TEARNED],{gasLimit:BigInt(1_500_000)});
-	console.log(_tr);
-	notice(`
-		<h3>Order Submitted!</h3>
-		<b>Claiming ${TEARNED_NAME.join("+")} rewards</b>
-		<br><img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO[0]}"> <b>${fornum5(_earned[0],18)}</b> ${TEARNED_NAME[0]}
-		<br><img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO[1]}"> <b>${fornum5(_earned[1],18)}</b> ${TEARNED_NAME[1]}
-		<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-	`);
-	_tw = await _tr.wait();
-	console.log(_tw)
-	notice(`
-		<h3>Order Completed!</h3>
-		<b>Claiming ${TEARNED_NAME.join("+")} rewards</b>
-		<br><img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO[0]}"> <b>${fornum5(_earned[0],18)}</b> ${TEARNED_NAME[0]}
-		<br><img style='height:20px;position:relative;top:4px' src="${TEARNED_LOGO[1]}"> <b>${fornum5(_earned[1],18)}</b> ${TEARNED_NAME[1]}
-		<h4><a target="_blank" href="${EXPLORE}/tx/${_tr.hash}">View on Explorer</a></h4>
-	`);
-	gubs();
-}
