@@ -160,6 +160,11 @@ footer{
 .content h3 {
   margin: auto;
 }
+.content img {
+￼    width: 24px;
+￼    height: 24px;
+￼    vertical-align: middle;
+}
 
 .topnav {
     display: flex;

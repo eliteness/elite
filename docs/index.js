@@ -567,7 +567,7 @@ async function bridge_submit(_toclid) {
 			<h2>Insufficient Balance!</h2>
 			<h3>Desired Amount:</h3>
 			${ Number(_oamt/(10n**18n)) }
-			<br>
+			<br><br>
 			<h3>Actual Balance:</h3>
 			${ _userbals[_curnet.clindex] }
 			<br><br>
@@ -580,12 +580,13 @@ async function bridge_submit(_toclid) {
 	notice(`
 		<h2>Constructing Bridge Request</h2>
 		<h3>≢${ Number(_oamt/(10n**18n)) }</h3>
+		Above amount will be Bridged
 		<h3>From <img src="${ CHAINS[CL[_curnet.clindex]].chainLogo }"> ${CL[_curnet.clindex]}</h3>
 		<i>Current Bal: ≢${ _userbals[_curnet.clindex] }</i>
-		<br>
+		<br><br>
 		<h3>To <img src="${ CHAINS[CL[_toclid]].chainLogo }"> ${CL[_toclid]}</h3>
 		<i>Current Bal: ≢${ _userbals[_toclid] }</i>
-		<br>
+		<br><br>
 		<h3>Recipient Address</h3>
 		${ window.ethereum.selectedAddress }
 	`);
@@ -598,26 +599,26 @@ async function bridge_submit(_toclid) {
 		DEFAULT_PARAMS
 	);
 
+
 	let _bridgefee = await ELITE[_curnet.clindex].quoteOFTFee( CHAINS[CL[_toclid]].lzid , _oamt );
 
 	notice(`
 		<h2>Check all details first & Sign this Transaction with your Wallet!</h2>
-		<br>
-		<h3>${ fornum6(Number(_gasreq)/1e18, 6) } CHAINS[_curnet.clindex].gasName</h3>
+		<h3>${ fornum6(Number(_gasreq[0])/1e18, 6) } $CHAINS[_curnet.clindex].gasName}</h3>
 		Gas fee paid to LayerZero Decentralized Validator Network
-		<br>
+		<br><br>
 		<h3>≢${ fornum6(Number(_bridgefee)/1e18,0) }</h3>
 		Bridge Fees in ELITE paid to Eliteness.Network
-		<br>
+		<br><br>
 		<h3>Amount of ELITE to Bridge</h3>
 		≢${ Number(_oamt/(10n**18n)) }
-		<br>
+		<br><br>
 		<h3>From <img src="${ CHAINS[CL[_curnet.clindex]].chainLogo }"> ${CL[_curnet.clindex]}</h3>
 		<i>Current Bal: ≢${ _userbals[_curnet.clindex] }</i>
-		<br>
+		<br><br>
 		<h3>To <img src="${ CHAINS[CL[_toclid]].chainLogo }"> ${CL[_toclid]}</h3>
 		<i>Current Bal: ≢${ _userbals[_toclid] }</i>
-		<br>
+		<br><br>
 		<h3>Recipient Address</h3>
 		${ window.ethereum.selectedAddress }
 	`);
@@ -634,7 +635,7 @@ async function bridge_submit(_toclid) {
 			adapterParams: DEFAULT_PARAMS
 		},
 		{
-			value : _gasreq
+			value : _gasreq[0]
 		}
 
 	);
@@ -657,24 +658,23 @@ async function bridge_submit(_toclid) {
 	notice(`
 		<h2>Bridging the chains!</h2>
 		Please track the progress of this transaction on LayerZero Explorer!
-		<br>
 		<h4><a target="_blank" href="https://layerzeroscan.com/tx/${_txh.hash}">Layerzeroscan.com/tx/${_txh.hash}</a></h4>
-		<br>
-		<h3>${ fornum6(Number(_gasreq)/1e18,0) } CHAINS[_curnet.clindex].gasName</h3>
+		<br><br>
+		<h3>${ fornum6(Number(_gasreq[0])/1e18,6) } ${CHAINS[_curnet.clindex].gasName}</h3>
 		Gas fee paid to LayerZero Decentralized Validator Network
-		<br>
-		<h3>≢${ fornum6(Number(_bridgefee)/1e18,0) }</h3>
+		<br><br>
+		<h3>≢${ fornum6(Number(_bridgefee)/1e18,2) }</h3>
 		Bridge Fees in ELITE paid to Eliteness.Network
-		<br>
+		<br><br>
 		<h3>Amount of ELITE to Bridge</h3>
 		≢${ Number(_oamt/(10n**18n)) }
-		<br>
+		<br><br>
 		<h3>From <img src="${ CHAINS[CL[_curnet.clindex]].chainLogo }"> ${CL[_curnet.clindex]}</h3>
 		<i>Current Bal: ≢${ _userbals[_curnet.clindex] }</i>
-		<br>
+		<br><br>
 		<h3>To <img src="${ CHAINS[CL[_toclid]].chainLogo }"> ${CL[_toclid]}</h3>
 		<i>Current Bal: ≢${ _userbals[_toclid] }</i>
-		<br>
+		<br><br>
 		<h3>Recipient Address</h3>
 		${ window.ethereum.selectedAddress }
 	`);
