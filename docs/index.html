@@ -56,7 +56,7 @@
                 <div>Total Supply of ELITE</div>
             </div>
             <div class="topstat">
-                <div id="">10 Chains</div>
+                <div id="topstats-chaincount">10 Chains</div>
                 <div>Connected Networks</div>
             </div>
             <div class="topstat">
@@ -72,6 +72,7 @@
             <button class="tablinks" onclick="openTab(event, 'Supplies')" id="tablinks_Supplies">Supplies</button>
             <button class="tablinks" onclick="openTab(event, 'Portfolio')" id="tablinks_Portfolio">Portfolio</button>
             <button class="tablinks" onclick="openTab(event, 'Bridge')" id="tablinks_Bridge">Bridge</button>
+            <button class="tablinks" onclick="openTab(event, 'Settings')" id="tablinks_Settings">Settings</button>
         </div>
 
 
@@ -92,7 +93,7 @@
 				<h2>Your ELITE Portfolio</h2>
                 <br>
         		<div class="c2a90-table" id="portfolio-table" align="center" style="display:grid;">
-        			<div style="font-family:italic">Counting your ≢ balances across 10 chains, please wait ...</div>
+        			<div style="font-family:italic">Loading RPC settings across 10 chains, please wait ...</div>
         		</div>
             </div>
         </div>
@@ -108,6 +109,20 @@
         		</div>
             </div>
         </div>
+
+        <!-- Tab content -->
+        <div id="Settings" class="tabcontent">
+            <div class="c2a c2a90" align="center" style="margin:auto">
+				<h2>Manage Dapp Settings</h2>
+                <br>
+        		<div class="c2a90-table" id="settings-table" align="center" style="display:grid;">
+        			<div style="font-family:italic">Counting your ≢ balances across 10 chains, please wait ...</div>
+        		</div>
+            </div>
+        </div>
+
+
+
 
         <footer>
         	<h2>Powered by Guru Network</h2>
@@ -271,7 +286,7 @@
 		"berachain-mainnet":{
 			url: "https://rpc.berachain.com",
         	chainId: 80094,
-        	chainLogo: "https://ftm.guru/icons/bera.png",
+        	chainLogo: "https://ftm.guru/icons/bera.svg",
         	gasName: "BERA",
         	explorer: "https://berascan.com",
         	lzid: 362,
@@ -294,6 +309,9 @@
   		"polygon-mainnet": 109,
 		"optimism-mainnet": 111,
 		"ethereum-mainnet": 101,
+		"berachain-mainnet": 362,
+		"linea-mainnet": 183,
+		"mantle-mainnet": 181
 	}
 
 

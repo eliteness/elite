@@ -310,6 +310,7 @@ async function paintStatic() {
 	paintStaticSuppliesTableHeads()
 	paintStaticPortfolioTableHeads()
 	paintStaticBridgeTableHeads()
+	paintStaticSettingsTableHeads()
 }
 function paintStaticSuppliesTableHeads(){
 
@@ -321,7 +322,7 @@ function paintStaticSuppliesTableHeads(){
 			<div onclick="sortit(3, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 1)">Valuations		<br><span class="c2a90-row-byline">Capitalization</span></div>
 			<div onclick="sortit(4, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 1)">Percentages		<br><span class="c2a90-row-byline">Distribution</span></div>
 		</div>
-		<div id="supplies-loader" style="font-family:italic"><br><br>Counting ≢ across 10 chains, please wait ...</div>
+		<div id="supplies-loader" style="font-family:italic"><br><br>Counting ≢ across ${CL.length} chains, please wait ...</div>
 	`;
 }
 function paintStaticPortfolioTableHeads(){
@@ -334,7 +335,7 @@ function paintStaticPortfolioTableHeads(){
 			<div onclick="sortit(3, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 1)">Valuations		<br><span class="c2a90-row-byline">Capitalization</span></div>
 			<div onclick="sortit(4, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 1)">Percentages		<br><span class="c2a90-row-byline">Distribution</span></div>
 		</div>
-		<div id="portfolio-loader" style="font-family:italic"><br><br>Counting your ≢ balances across 10 chains, please wait for your wallet connection ...</div>
+		<div id="portfolio-loader" style="font-family:italic"><br><br>Counting your ≢ balances across ${CL.length} chains, please wait for your wallet connection ...</div>
 	`;
 
 }
@@ -347,7 +348,22 @@ function paintStaticBridgeTableHeads(){
 			<div onclick="sortit(3, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">Amount of ≢ to Bridge		<br><span class="c2a90-row-byline">Input your amount<span></div>
 			<div onclick="sortit(4, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">Actions<br><span class="c2a90-row-byline">Start Transaction</span></div>
 		</div>
-		<div id="bridge-loader" style="font-family:italic"><br><br>Counting your ≢ balances across 10 chains, please wait for your wallet connection...</div>
+		<div id="bridge-loader" style="font-family:italic"><br><br>Counting your ≢ balances across ${CL.length} chains, please wait for your wallet connection...</div>
+	`;
+
+    return
+
+}
+function paintStaticSettingsTableHeads(){
+	$("settings-table").innerHTML = `
+		<div class="c2a90-row">
+			<div onclick="sortit(0, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">							<br><span class="c2a90-row-byline"></span></div>
+			<div onclick="sortit(1, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">Chain						<br><span class="c2a90-row-byline">Network</span></div>
+			<div onclick="sortit(0, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">							<br><span class="c2a90-row-byline"></span></div>
+			<div onclick="sortit(3, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">RPC URL used				<br><span class="c2a90-row-byline">Input your own RPC URL<span></div>
+			<div onclick="sortit(4, 'supplies-table', 'c2a90-row', 'c2a90-row-item', null, 1, 0)">Actions					<br><span class="c2a90-row-byline">Connect</span></div>
+		</div>
+		<div id="settings-loader" style="font-family:italic"><br><br>Loading your RPC URLs across ${CL.length} chains, please wait for your wallet connection...</div>
 	`;
 
     return
@@ -355,7 +371,23 @@ function paintStaticBridgeTableHeads(){
 }
 
 async function dexstats() {
+	// RPC
+	paintStaticSettingsTableHeads()
+	try{$("settings-loader").remove()}catch(e){}
+	for(i=0;i<CL.length;i++) {
+		$("settings-table").innerHTML += `
+			<div class="c2a90-row">
+				<div class="c2a90-row-item"><img src="${ CHAINS[CL[i]].chainLogo }"></div>
+				<div class="c2a90-row-item">${ CL[i].replaceAll("-mainnet","") }</div>
+				<div class="c2a90-row-item"> </div>
+				<div class="c2a90-row-item"><input placeholder="Enter RPC for ${CL[i].replaceAll('-mainnet','')}" id="settings-inp-${i}" value="${CHAINS[CL[i]].url}"/></div>
+				<div class="c2a90-row-item"><button class="bridge-btn-submit" onclick='updateSettings()'>Update </button></div>
+			</div>
+		`;
+	}
 
+
+	// PORTFOLIO
 	TVLGURU_FANTOM = new ethers.Contract("0x0786c3a78f5133f08c1c70953b8b10376bc6dcad",["function p_t_coin_usd(address) public view returns(uint)"], CHAINS["fantom-mainnet"].pp);
 	_price_elite_fantom = (await TVLGURU_FANTOM.p_t_coin_usd("0xea035a13b64cb49d85e2f0a2736c9604cb21599c"))/1e18;
 	_price_elite = _price_elite_fantom / 300000;
@@ -366,6 +398,7 @@ async function dexstats() {
 	paintStaticSuppliesTableHeads()
 	try{$("supplies-loader").remove()}catch(e){}
 	$("topstats-totsup").innerHTML = "≢"+fornum6( _totsup , 0)
+	$("topstats-chaincount").innerHTML = CL.length + " Chains";
 	$("topstats-fdv").innerHTML = "$"+fornum6(_price_elite * _totsup , 0)
 
 	for(i=0;i<CL.length;i++) {
@@ -379,7 +412,7 @@ async function dexstats() {
 			</div>
 		`;
 	}
-
+	// Summary Row
 	$("supplies-table").innerHTML += `
 		<div class="hhr"></div>
 		<div class="c2a90-row port-total">
@@ -542,7 +575,12 @@ async function bridge_gasCheck(_toclid) {
 	$("bridge-btn-gascheck-"+_toclid).innerHTML = "&#x21bb; " + fornum6(_gasreq[0]/1e18,6) + " " + CHAINS[CL[_curnet.clindex]].gasName
 }
 
-
+async function updateSettings() {
+	for(i=0;i<CL.length;i++) {
+		CHAINS[CL[i]].url = $("settings-inp-"+i).value;
+	}
+	basetrip()
+}
 async function bridge_submit(_toclid) {
 	console.log("bridge_submit", _toclid);
 
